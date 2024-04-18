@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { login } from '../requests/apiRequests';
+import { login } from '../requests/loginRequests';
 import { validEmail, validPassword, invalidEmail, invalidPassword } from '../config/variables';
 
 export let sysadminToken: string;
