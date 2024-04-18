@@ -1,6 +1,18 @@
 {
+  "name": "qacoders_playwright_automation",
+  "version": "1.0.0",
+  "description": "Este projeto visa automatizar testes de API e front-end utilizando o framework Playwright, mantendo uma estrutura organizada e seguindo boas práticas de desenvolvimento.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@playwright/test": "^1.43.1",
+    "@types/node": "^20.12.7"
+  },
   "dependencies": {
-    "faker": "^6.6.6",
-    "playwright": "^1.43.1"
+    "axios": "^1.6.8"
   }
 }
