@@ -1,4 +1,4 @@
-import { apiUrl } from '../config/variables';
+import { apiUrl } from '../config/credentials';
 
 export async function login(request: any, email: string, password: string) {
     const response = await request.post(`${apiUrl}/login`, {

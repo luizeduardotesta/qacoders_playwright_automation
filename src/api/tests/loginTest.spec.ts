@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { login } from '../requests/loginRequests';
-import { validEmail, validPassword, invalidEmail, invalidPassword } from '../config/variables';
+import { credentials } from '../config/credentials';
 
 export let sysadminToken: string;
 
 test("Success login with sysadmin", async ({ request }) => {
-    const response = await login(request, validEmail, validPassword);
+    const response = await login(request, credentials.validEmail, credentials.validPassword);
 
     expect(response.status()).toEqual(200);
     const responseBody = await response.json();
@@ -16,7 +16,7 @@ test("Success login with sysadmin", async ({ request }) => {
 });
 
 test("Error login with sysadmin wrong mail", async ({ request }) => {
-    const response = await login(request, invalidEmail, validPassword);
+    const response = await login(request, credentials.invalidEmail, credentials.validPassword);
 
     expect(response.status()).toEqual(400);
     const responseBody = await response.json();
@@ -24,7 +24,7 @@ test("Error login with sysadmin wrong mail", async ({ request }) => {
 });
 
 test("Error login with sysadmin wrong password", async ({ request }) => {
-    const response = await login(request, validEmail, invalidPassword);
+    const response = await login(request, credentials.validEmail, credentials.invalidPassword);
 
     expect(response.status()).toEqual(400);
     const responseBody = await response.json();
