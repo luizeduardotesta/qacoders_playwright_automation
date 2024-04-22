@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { login, validateToken } from '../requests/loginRequests';
+import { LoginRequest } from '../requests/loginRequests';
 import { credentials } from '../config/credentials';
 
 export let sysadminToken: string;
 
 test("Success login with sysadmin", async ({ request }) => {
-    const response = await login(request, credentials.validEmail, credentials.validPassword);
+    const response = await LoginRequest.login(request, credentials.validEmail, credentials.validPassword);
 
     expect(response.status()).toEqual(200);
     const responseBody = await response.json();
@@ -15,7 +15,7 @@ test("Success login with sysadmin", async ({ request }) => {
 });
 
 test("Error login with sysadmin wrong mail", async ({ request }) => {
-    const response = await login(request, credentials.invalidEmail, credentials.validPassword);
+    const response = await LoginRequest.login(request, credentials.invalidEmail, credentials.validPassword);
 
     expect(response.status()).toEqual(400);
     const responseBody = await response.json();
@@ -23,7 +23,7 @@ test("Error login with sysadmin wrong mail", async ({ request }) => {
 });
 
 test("Error login with sysadmin wrong password", async ({ request }) => {
-    const response = await login(request, credentials.validEmail, credentials.invalidPassword);
+    const response = await LoginRequest.login(request, credentials.validEmail, credentials.invalidPassword);
 
     expect(response.status()).toEqual(400);
     const responseBody = await response.json();
@@ -31,13 +31,13 @@ test("Error login with sysadmin wrong password", async ({ request }) => {
 });
 
 test("Verify token validity after successful login", async ({ request }) => {
-    const loginResponse = await login(request, credentials.validEmail, credentials.validPassword);
+    const loginResponse = await LoginRequest.login(request, credentials.validEmail, credentials.validPassword);
 
     expect(loginResponse.status()).toEqual(200);
     const responseBody = await loginResponse.json();
     sysadminToken = responseBody.token;
 
-    const validateTokenResponse = await validateToken(request, sysadminToken);
+    const validateTokenResponse = await LoginRequest.validateToken(request, sysadminToken);
     expect(validateTokenResponse.status()).toEqual(200);
     const validateTokenBody = await validateTokenResponse.json();
     expect(validateTokenBody.valid).toBeTruthy();
