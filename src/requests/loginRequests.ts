@@ -13,3 +13,14 @@ export async function login(request: any, email: string, password: string) {
 
     return response;
 }
+
+export async function validateToken(request: any, token: string) {
+    const response = await request.get(`${apiUrl}/validateToken`, {
+        headers: {
+            "Authorization": `${token}`,
+            "Accept": "application/json"
+        }
+    });
+
+    return response;
+}
