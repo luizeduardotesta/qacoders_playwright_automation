@@ -61,6 +61,12 @@ npm install
     npx playwright test
 ```
 
+ou se quiser gerar reports:
+
+```bash
+    npx playwright test --reporter=html
+```
+
 ## Contribution
 
 Este projeto é destinado ao estudo e aprendizado do Playwright. Contribuições são bem-vindas, especialmente através de comentários que possam ajudar a melhorar o código, corrigir erros ou adicionar novas funcionalidades.
